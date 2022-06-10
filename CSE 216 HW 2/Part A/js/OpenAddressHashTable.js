@@ -56,7 +56,66 @@ export default class OpenAddressHashTable {
 
     // @todo - YOU MUST DEFINE THIS METHOD
     putValue(key, item) {
+        let index = this.hashCode(key);
+        let temp = new KeyValuePair(key, item);
+        
+        for(let i = 0; i < this.length; i++)
+        {
+            
+            if(this.hashTable[i] == null)
+            {
+                continue;
+            }
+            if(this.hashTable[i] != null && this.hashTable[i].key == key)
+            {
+                this.hashTable[i].value = item;
+                return;
+            }
+        }
 
+        if(this.size != this.length)
+        {
+            for(let i = index; i < this.length + index; i++)
+            {
+                if(this.hashTable[i % this.length] == null)
+                {
+                    this.hashTable[i % this.length] = temp;
+                    this.size = this.size + 1;
+                    return;
+                }
+            }
+        }
+        else
+        {
+            let currentTable = [];
+            for(let i = 0; i < this.length; i++)
+            {
+                currentTable[i] = this.hashTable[i];
+            }
+            this.hashTable = [this.length + this.length];
+            this.length += this.length;
+            for(let i = 0; i < this.length; i++)
+            {
+                this.hashTable[i] = null;
+            }
+            for(let i = 0; i < this.size; i++)
+            {
+                let kvp = currentTable[i];
+                let kvpIndex = this.hashCode(kvp.key);
+                for(let k = kvpIndex; k < this.length + kvpIndex; k++)
+                {
+                    if(this.hashTable[k % this.length] == null)
+                    {
+                        this.hashTable[k % this.length] = kvp;
+                        break;
+                    }
+                }
+                console.log(currentTable);
+                console.log(this.hashTable);
+            }
+            this.putValue(key, item);
+            return;
+        }
     }
     
     toString() {
