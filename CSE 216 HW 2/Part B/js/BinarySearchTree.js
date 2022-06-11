@@ -82,6 +82,22 @@ export default class BinarySearchTree {
 
     // @todo - YOU MUST DEFINE THIS METHOD
     getValue(key) {
+        let tempCheck = this.root;
+        while(tempCheck != null)
+        {
+            if(tempCheck.key == key)
+            {
+                return tempCheck.data;
+            }
+            if(key.localeCompare(tempCheck.key) > 0)
+            {
+                tempCheck = tempCheck.right;
+            }
+            else if(key.localeCompare(tempCheck.key) < 0)
+            {
+                tempCheck = tempCheck.left;
+            }
+        }
         return null;
     }
 
