@@ -45,7 +45,6 @@ export default class OpenAddressHashTable {
         return key;
     }
     
-    // @todo - YOU MUST DEFINE THIS METHOD
     getValue(key) {
         let index = this.hashCode(key);
         for(let i = index; i < index + this.length; i++)
@@ -59,12 +58,9 @@ export default class OpenAddressHashTable {
                 return this.hashTable[i % this.length].value;
             }
         }
-        
-        
         return null;
     }
     
-    // @todo - YOU MUST DEFINE THIS METHOD
     removeValue(key) { 
         let index = this.hashCode(key);
         for(let i = index; i < this.length + index; i++)
@@ -107,7 +103,6 @@ export default class OpenAddressHashTable {
 
     }
 
-    // @todo - YOU MUST DEFINE THIS METHOD
     putValue(key, item) {
         let index = this.hashCode(key);
         let temp = new KeyValuePair(key, item);
