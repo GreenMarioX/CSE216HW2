@@ -1,5 +1,5 @@
 import OpenAddressHashTable from "./OpenAddressHashTable.js";
-import { Person, Employee, Student } from "./People.js";
+import { Person, Employee, Student, Undergraduate } from "./People.js";
 
 const NUM_BINS = 5;
 const KEY_LENGTH = 8;
@@ -29,6 +29,7 @@ addPersonToHashTable(new Person(hashTable.generateKey(), "Chuck", "Berry"), hash
 addPersonToHashTable(new Student(hashTable.generateKey(), "Mick", "Jagger", 3.5), hashTable);
 addPersonToHashTable(new Student(hashTable.generateKey(), "Jimi", "Hendrix", 3.6), hashTable);
 addPersonToHashTable(new Person(hashTable.generateKey(), "Roger", "Waters"), hashTable);
+addPersonToHashTable(new Undergraduate(hashTable.generateKey(), "Roger", "Waters", 3.1, "U1"), hashTable);
 
 // DEMONSTRATE MAKING KEYS AND ADDING VALUES TO THE HASH TABLE    
 let jlKey = hashTable.generateKey();
