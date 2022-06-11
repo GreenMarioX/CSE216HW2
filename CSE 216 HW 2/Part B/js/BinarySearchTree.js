@@ -103,7 +103,73 @@ export default class BinarySearchTree {
 
     // @todo - YOU MUST DEFINE THIS METHOD
     removeValue(key) {
+        let current = this.root;
+        let previous = null;
+        while(current != null && current.key != key)
+        {
+            previous = current;
+            if(key.localeCompare(current.key) < 0)
+            {
+                current = current.left;
+            }
+            else
+            {
+                current = current.right;
+            }
+        }
+        if(current == null)
+        {
+            console.log("CANNOT DELETE SINCE DOES NOT EXIST");
+            return;
+        }
+        if(current.left == null || current.right == null)
+        {
+            let newCurrent;
+            if(current.left == null)
+            {
+                newCurrent = current.right;
+            }
+            else
+            {
+                newCurrent = current.left;
+            }
+            if(previous == null)
+            {
+                return;
+            }
+            if(current == previous.left)
+            {
+                previous.left = newCurrent;
+            }
+            else
+            {
+                previous.right = newCurrent;
+            }
+        }
+        else
+        {
+            let p = null;
+            let temp;
 
+            temp = current.right;
+            while(temp.left != null)
+            {
+                p = temp;
+                temp = temp.left;
+            }
+
+            if(p != null)
+            {
+                p.left = temp.right;
+            }
+            else
+            {
+                current.right = temp.right;
+            }
+            current.data = temp.data;
+            current.key = temp.key;
+        }
+        return;
     }
 
     toStringRecursively(traveller, level) {
