@@ -149,6 +149,10 @@ export default class OpenAddressHashTable {
             for(let i = 0; i < this.size; i++)
             {
                 let kvp = currentTable[i];
+                if(kvp == null)
+                {
+                    continue;
+                }
                 let kvpIndex = this.hashCode(kvp.key);
                 for(let k = kvpIndex; k < this.length + kvpIndex; k++)
                 {
@@ -158,8 +162,6 @@ export default class OpenAddressHashTable {
                         break;
                     }
                 }
-                console.log(currentTable);
-                console.log(this.hashTable);
             }
             this.putValue(key, item);
             return;
